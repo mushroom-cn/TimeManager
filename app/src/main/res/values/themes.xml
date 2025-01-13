@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.TimeManager" parent="Theme.AppCompat.DayNight.NoActionBar" />
+</resources>

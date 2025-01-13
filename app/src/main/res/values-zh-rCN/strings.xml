@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">时间管理器</string>
+    <string name="bind_device">绑定设备</string>
+    <string name="authorize_and_unlock">授权解锁</string>
+    <string name="createTimeX">创建于%1$s</string>
+</resources>
