@@ -1,5 +1,9 @@
 package io.github.mushroom_cn.timemanager.data
 
+import android.app.Application
+import android.util.Log
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -7,13 +11,13 @@ import dagger.hilt.components.SingletonComponent
 import io.github.mushroom_cn.timemanager.data.local.dao.ConfigurationDao
 import io.github.mushroom_cn.timemanager.data.local.database.AppDatabase
 import io.github.mushroom_cn.timemanager.data.repository.ConfigurationRepository
+import java.util.concurrent.Executors
 import javax.inject.Singleton
-import android.app.Application
-import androidx.room.Room
+
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object DaoModule {
 
     @Provides
     @Singleton
@@ -22,18 +26,21 @@ object AppModule {
             app,
             AppDatabase::class.java,
             "app_database"
-        ).build()
+        ).setQueryCallback(RoomDatabase.QueryCallback { sqlQuery, bindArgs ->
+            Log.d("SQL", "$sqlQuery. SQL Args: $bindArgs")
+        }, Executors.newSingleThreadExecutor()).build()
     }
 
     @Provides
     @Singleton
-    fun provideUserDao(database: AppDatabase): ConfigurationDao {
+    fun provideConfigurationDao(database: AppDatabase): ConfigurationDao {
         return database.configurationDao()
     }
 
     @Provides
     @Singleton
-    fun provideUserRepository(userDao: ConfigurationDao): ConfigurationRepository {
+    fun provideConfigurationRepository(userDao: ConfigurationDao): ConfigurationRepository {
         return ConfigurationRepository(userDao)
     }
+
 }

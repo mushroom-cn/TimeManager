@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3f80c9ac503343cda54d9bcae67c8210",
+    "identityHash": "3336c54c0a1fe781edc80476c03bbd49",
     "entities": [
       {
         "tableName": "configurations",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `createDate` INTEGER NOT NULL, `modifyDate` INTEGER NOT NULL, `today` TEXT NOT NULL, `remainDuration` INTEGER NOT NULL, `status` INTEGER NOT NULL, `durationOfEachViewing` INTEGER NOT NULL, `maxViewsCount` INTEGER NOT NULL, `remainViewCount` INTEGER NOT NULL, `minViewInterval` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `createDateTime` TEXT, `lastModifyDateTime` TEXT NOT NULL, `timeOfEachViewing` INTEGER NOT NULL, `remainTimeOfEachViewing` INTEGER NOT NULL, `maxViewsCount` INTEGER NOT NULL, `remainViewCount` INTEGER NOT NULL, `minViewInterval` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -15,38 +15,26 @@
             "notNull": true
           },
           {
-            "fieldPath": "createDate",
-            "columnName": "createDate",
-            "affinity": "INTEGER",
-            "notNull": true
+            "fieldPath": "createDateTime",
+            "columnName": "createDateTime",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
-            "fieldPath": "modifyDate",
-            "columnName": "modifyDate",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "today",
-            "columnName": "today",
+            "fieldPath": "lastModifyDateTime",
+            "columnName": "lastModifyDateTime",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "remainDuration",
-            "columnName": "remainDuration",
+            "fieldPath": "timeOfEachViewing",
+            "columnName": "timeOfEachViewing",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "status",
-            "columnName": "status",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "durationOfEachViewing",
-            "columnName": "durationOfEachViewing",
+            "fieldPath": "remainTimeOfEachViewing",
+            "columnName": "remainTimeOfEachViewing",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -102,7 +90,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3f80c9ac503343cda54d9bcae67c8210')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3336c54c0a1fe781edc80476c03bbd49')"
     ]
   }
 }

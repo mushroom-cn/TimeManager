@@ -46,13 +46,8 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun TabBar() {
     var selectedTabIndex by remember { mutableStateOf(0) }
-    var isHovered by remember { mutableStateOf(false) }
     val tabTitles = listOf(R.string.bind_device, R.string.authorize_and_unlock)
-
     val interactionSource = remember { MutableInteractionSource() }
-    val hover = interactionSource.collectIsHoveredAsState();
-    val focus = interactionSource.collectIsFocusedAsState();
-    var color by remember { mutableStateOf(Color.White) }
     Column {
         TabRow(selectedTabIndex = selectedTabIndex) {
             tabTitles.forEachIndexed { index, title ->
@@ -68,15 +63,11 @@ fun TabBar() {
                         selectedTabIndex = index
                     },
                     modifier = Modifier
-                        .background(
-                            color = Color.Green
-                        )
                         .focusable(interactionSource = interactionSource)
                         .onFocusEvent {
-                            color = Color.Red
-                            Log.d("debug", "focus on me ${it.isFocused}")
-                            Log.d("debug", "focus on me ${it.isFocused}")
-                            Log.d("debug", "focus on me ${it.isFocused}")
+                            Log.d("debug", "focus on me ")
+                            Log.d("debug", "focus on me ")
+                            Log.d("debug", "focus on me ")
                         },
                     content = {
                         Text(

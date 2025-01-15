@@ -3,4 +3,8 @@
     <string name="bind_device">Bind Device</string>
     <string name="authorize_and_unlock">Authorize And Unlock</string>
     <string name="createTimeX">Create Time %1$s</string>
+    <string name="create_schedule_work">Schedule work will start after %1$d minutes</string>
+    <string name="init_database">Init database</string>
+    <string name="action_boot_completed">Action boot complated</string>
+    <string name="action_shutdown">Shut down</string>
 </resources>

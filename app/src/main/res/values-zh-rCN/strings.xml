@@ -4,4 +4,8 @@
     <string name="bind_device">绑定设备</string>
     <string name="authorize_and_unlock">授权解锁</string>
     <string name="createTimeX">创建于%1$s</string>
+    <string name="create_schedule_work">任务已创建，%1$d 分钟触发</string>
+    <string name="init_database">初始化数据库</string>
+    <string name="action_boot_completed">设备重启完成</string>
+    <string name="action_shutdown">关机</string>
 </resources>

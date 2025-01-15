@@ -7,6 +7,7 @@ plugins {
     id("com.google.dagger.hilt.android")
 //    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
     alias(libs.plugins.compose.compiler)
+    id("androidx.room")
 }
 
 
@@ -14,20 +15,26 @@ plugins {
 android {
     namespace = "io.github.mushroom_cn.timemanager"
     compileSdk = 35
-//    suppressUnsupportedCompileSdk = 35
+
+
     defaultConfig {
         applicationId = "io.github.mushroom_cn.timemanager"
         minSdk = 34
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
         vectorDrawables {
             useSupportLibrary = true
         }
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
-        }
+
+//        kapt {
+//            arguments {
+//                arg("room.schemaLocation", "$projectDir/schemas")
+//            }
+//        }
 
     }
 
@@ -58,7 +65,13 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             excludes += "/META-INF/INDEX.LIST"
             excludes += "/META-INF/io.netty.versions.properties"
+            excludes += "META-INF/LICENSE.md"
+            excludes += "META-INF/NOTICE.md"
         }
+    }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
 }
 
@@ -72,7 +85,9 @@ dependencies {
     implementation(libs.androidx.tv.material)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.work.runtime.ktx.v271)
+//    implementation(libs.androidx.work.runtime.ktx.v271)
+    implementation(libs.androidx.junit.ktx)
+    implementation(libs.androidx.hilt.work)
     runtimeOnly(libs.androidx.foundation)
 
     // 二维码生成工具
@@ -86,7 +101,7 @@ dependencies {
     implementation(libs.commons.codec)
 
     // 序列化层
-    implementation (libs.kotlinx.serialization.json)
+    implementation(libs.kotlinx.serialization.json)
 
     // websocket 层
     implementation(libs.ktor.server.core)
@@ -96,32 +111,70 @@ dependencies {
 
     // room持久层
     implementation(libs.androidx.room.runtime)
-    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
-    // See Add the KSP plugin to your project
     ksp(libs.androidx.room.compiler)
-    // If this project only uses Java source, use the Java annotationProcessor
-    // No additional plugins are necessary
     annotationProcessor(libs.androidx.room.compiler)
-    // optional - Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
-    // optional - Test helpers
     testImplementation(libs.androidx.room.testing)
-
-    // optional - Paging 3 Integration
+    implementation(libs.androidx.room.guava)
     implementation(libs.androidx.room.paging)
 
+    // unit test
+    androidTestImplementation(libs.test.core)
+    // Kotlin extensions for androidx.test.core
+    androidTestImplementation(libs.core.ktx)
+    androidTestImplementation(libs.androidx.core)
+    androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.rules)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.truth)
+    androidTestImplementation(libs.androidx.espresso.idling.resource)
+
+    // hilt test
+    // For Robolectric tests.
+    // For instrumented tests.
+    testImplementation(libs.hilt.android.testing)
+    kaptTest(libs.hilt.android.compiler)
+//    testAnnotationProcessor (libs.hilt.android.compiler)
+    androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.android.compiler)
+//    androidTestAnnotationProcessor (libs.hilt.android.compiler)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
-//    implementation("com.google.dagger:hilt-android:2.51.1")
-//    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+//    kapt ("com.google.dagger:hilt-android-compiler:2.41")
+    // rxjava
+    implementation(libs.rxandroid)
+    implementation(libs.rxjava)
+    implementation(libs.androidx.room.rxjava3)
 
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    val work_version = "2.10.0"
+// (Java only)
+    implementation("androidx.work:work-runtime:$work_version")
+
+    // Kotlin + coroutines
+    implementation("androidx.work:work-runtime-ktx:$work_version")
+
+    // optional - RxJava2 support
+    implementation("androidx.work:work-rxjava3:$work_version")
+
+    // optional - GCMNetworkManager support
+    implementation("androidx.work:work-gcm:$work_version")
+
+    // optional - Test helpers
+    androidTestImplementation("androidx.work:work-testing:$work_version")
+
+    // optional - Multiprocess support
+    implementation("androidx.work:work-multiprocess:$work_version")
 }
 composeCompiler {
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
+}
+
+kapt {
+    correctErrorTypes = true
 }

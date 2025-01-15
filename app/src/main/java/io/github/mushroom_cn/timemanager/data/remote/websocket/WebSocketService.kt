@@ -1,8 +1,9 @@
-package io.github.mushroom_cn.timemanager.data.remote.websoket
+package io.github.mushroom_cn.timemanager.data.remote.websocket
 
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
+import io.github.mushroom_cn.timemanager.data.remote.websoket.module
 import io.ktor.server.application.Application
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
