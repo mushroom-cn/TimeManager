@@ -8,7 +8,8 @@
     <uses-feature
         android:name="android.software.leanback"
         android:required="false" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -33,10 +34,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TimeManager">
 
-        <service
-            android:name=".data.remote.websocket.WebSocketService"
-            android:exported="false"
-            android:permission="android.permission.INTERNET" />
         <service android:name=".receivers.QrLockFloatService"
             android:exported="false"/>
         <receiver

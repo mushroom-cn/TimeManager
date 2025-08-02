@@ -11,17 +11,24 @@ class TimeManagerApplication : Application(), Configuration.Provider {
     @Inject
     lateinit var configurationRepository: ConfigurationRepository
 
+
+    @Inject
+    lateinit var embeddedServer: EmbeddedServer
+
     override val workManagerConfiguration
         get() = Configuration.Builder()
             .setMinimumLoggingLevel(android.util.Log.DEBUG)
             .build()
 
-
     @Inject
     override fun onCreate() {
         super.onCreate()
-
+        embeddedServer.start()
     }
 
+    override fun onTerminate() {
+        super.onTerminate()
+        embeddedServer.stop()
+    }
 
 }

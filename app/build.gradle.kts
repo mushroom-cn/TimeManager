@@ -209,6 +209,8 @@ dependencies {
     implementation(libs.androidx.biometric)
 
     implementation(libs.prettytime)
+    implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
 }
 composeCompiler {
     reportsDestination = layout.buildDirectory.dir("compose_compiler")

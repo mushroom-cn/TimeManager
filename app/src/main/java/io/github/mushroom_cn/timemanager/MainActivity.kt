@@ -27,9 +27,6 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var userRepository: ConfigurationRepository
 
-    private lateinit var confirmCredentialLauncher: ActivityResultLauncher<Intent>
-
-    @OptIn(ExperimentalTvMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!Settings.canDrawOverlays(this)) {
