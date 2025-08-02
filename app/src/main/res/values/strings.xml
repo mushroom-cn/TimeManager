@@ -7,4 +7,7 @@
     <string name="init_database">Init database</string>
     <string name="action_boot_completed">Action boot complated</string>
     <string name="action_shutdown">Shut down</string>
+    <string name="pin_auth">Pin authorize</string>
+    <string name="pin_placeholder">Please enter pin code password</string>
+    <string name="cancel">"Cancel "</string>
 </resources>

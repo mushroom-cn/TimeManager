@@ -8,4 +8,7 @@
     <string name="init_database">初始化数据库</string>
     <string name="action_boot_completed">设备重启完成</string>
     <string name="action_shutdown">关机</string>
+    <string name="pin_auth">Pin 码验证</string>
+    <string name="pin_placeholder">请输入PIN码</string>
+    <string name="cancel">取消</string>
 </resources>

@@ -152,24 +152,63 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    val work_version = "2.10.0"
+
 // (Java only)
-    implementation("androidx.work:work-runtime:$work_version")
+    implementation(libs.androidx.work.runtime)
 
     // Kotlin + coroutines
-    implementation("androidx.work:work-runtime-ktx:$work_version")
+    implementation(libs.androidx.work.runtime.ktx)
 
     // optional - RxJava2 support
-    implementation("androidx.work:work-rxjava3:$work_version")
+    implementation(libs.androidx.work.rxjava3)
 
     // optional - GCMNetworkManager support
-    implementation("androidx.work:work-gcm:$work_version")
+//    implementation(libs.androidx.work.gcm)
 
     // optional - Test helpers
-    androidTestImplementation("androidx.work:work-testing:$work_version")
+    androidTestImplementation(libs.androidx.work.testing)
 
     // optional - Multiprocess support
-    implementation("androidx.work:work-multiprocess:$work_version")
+    implementation(libs.androidx.work.multiprocess)
+
+
+    // ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    // ViewModel utilities for Compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // LiveData
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    // Lifecycle utilities for Compose
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
+    // Saved state module for ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
+
+    // Annotation processor
+    kapt(libs.androidx.lifecycle.compiler)
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation(libs.androidx.lifecycle.common.java8)
+
+    // optional - helpers for implementing LifecycleOwner in a Service
+    implementation(libs.androidx.lifecycle.service)
+
+    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
+    implementation(libs.androidx.lifecycle.process)
+
+    // optional - ReactiveStreams support for LiveData
+    implementation(libs.androidx.lifecycle.reactivestreams.ktx)
+
+    // optional - Test helpers for LiveData
+    testImplementation(libs.androidx.core.testing)
+
+    // optional - Test helpers for Lifecycle runtime
+    testImplementation(libs.androidx.lifecycle.runtime.testing)
+
+    implementation(libs.androidx.biometric)
+
+    implementation(libs.prettytime)
 }
 composeCompiler {
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
